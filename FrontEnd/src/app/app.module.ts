@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdButtonModule, MdIconModule, MdInputModule, MdChipsModule, MdTabsModule, MdSelectModule, MdDialogModule, MdCardModule, MdTooltipModule, MdMenuModule, MdSidenavModule, MdCheckboxModule, MdOptionModule} from '@angular/material';
 import { Md2Module }  from 'md2';
-import { DatepickerModule } from 'angular2-material-datepicker';
 import {ListEmployeeComponent} from './list-employee/list-employee.component';
 import {SearchBarComponent} from './search-bar/search-bar.component';
 import {NavigatorBarComponent} from './navigator-bar/navigator-bar.component';
@@ -15,6 +14,8 @@ import {EmployeeDataComponent} from './employeeData/employeeData.component';
 import {AddFormComponent} from './addForm/addForm.component';
 import {PopUpComponent} from './popUp/popUp.component';
 import {AppService} from './app.service';
+import {RefreshService} from './refreshapp.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,9 +51,9 @@ import {AppService} from './app.service';
     MdCheckboxModule,
     MdOptionModule,
     Md2Module,
-    DatepickerModule,
+  
   ],
-  providers: [AppService],
+  providers: [AppService, RefreshService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {MdDialog} from '@angular/material';
 import {PopUpComponent} from '../../app/popUp/popUp.component';
 import { AppService } from 'app/app.service';
+import {RefreshService} from 'app/refreshapp.service';
+
 @Component({
 	selector: 'search-bar',
 	templateUrl: 'search-bar.component.html',
@@ -20,7 +22,7 @@ export class SearchBarComponent  {
   selectedEmployee = null;
   locationFilter = "";
   genderFilter = ""
-constructor(private service:AppService, public dialog: MdDialog) {}
+constructor(private service:AppService, public dialog: MdDialog, private RefreshService: RefreshService) {}
  
  ngOnInit() {
     this.service.getAll().subscribe(data => {
@@ -41,6 +43,7 @@ getEmployees(name) {
         } else {
           this.show = false;
         }
+        this.RefreshService.notifyOther({ option: 'refresh', value: contacts });
       });
   }
 
