@@ -1,0 +1,18 @@
+<form>
+    <md-select placeholder="Location" [(ngModel)]="selectedValue" name="food">
+        <md-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+        </md-option>
+    </md-select>
+    <!--<p> Location: {{selectedValue}} </p>-->
+
+    <md-select placeholder="Gender" [(ngModel)]="selectedGenderValue" name="gender">
+        <md-option *ngFor="let gender of genders" [value]="gender.value">
+            {{gender.viewValue}}
+        </md-option>
+    </md-select>
+    <!--<p> Gender: {{selectedGenderValue}} </p>-->
+
+    <button md-raised-button type="reset">Clear</button>
+    <button md-raised-button type="submit">Filter</button>
+</form>

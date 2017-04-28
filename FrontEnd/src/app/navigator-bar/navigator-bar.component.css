@@ -1,0 +1,46 @@
+.top-bar-div {
+    box-sizing: border-box;
+    position: absolute;
+    height: 50px;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    right: auto;
+    padding: 1px 0px 0px 2px;
+    background-color: indianred;
+}
+
+.nav-bar-icon {
+    position: absolute;
+    left: auto;
+    right: auto;
+    padding: 5px 0px 0px 0px;
+}
+
+.bottom-div {
+    position: absolute;
+    height: 40px;
+    width: 100%;
+    background-color: indianred;
+    bottom: 0px;
+    left: 0px;
+    right: auto;
+    color: white;
+}
+
+.example-container {
+    float: right;
+    position: absolute;
+    right: 5px;
+    bottom: 2px;
+}
+
+.example-button-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.addform {
+    height: 530px;
+}

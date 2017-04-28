@@ -1,0 +1,117 @@
+<form class="example-form">
+    <table class="example-full-width" cellspacing="2">
+        <tr>
+            <td>
+                <md-input-container class="example-full-width">
+                    <input mdInput placeholder="First name">
+                </md-input-container>
+            </td>
+            <td>
+                <md-input-container class="example-full-width">
+                    <input mdInput placeholder="Sub Division">
+                </md-input-container>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <md-input-container class="example-full-width">
+                    <input mdInput placeholder="Last name">
+                </md-input-container>
+            </td>
+            <td>
+                <md-select placeholder="Status" class="example-full-width">
+                    <md-option *ngFor="let status of statuss" [value]="status.value">
+                        {{ status.viewValue }}
+                    </md-option>
+                </md-select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <md-select placeholder="Gender" class="example-full-width">
+                    <md-option *ngFor="let gender of genders" [value]="gender.value">
+                        {{ gender.viewValue }}
+                    </md-option>
+                </md-select>
+
+            </td>
+            <td>
+                <md-input-container class="example-full-width">
+                    <input mdInput placeholder="Suspend Date">
+                </md-input-container>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <md-input-container class="example-full-width">
+                    <input mdInput type="date" placeholder="Birth of Date">
+                </md-input-container>
+            </td>
+            <td>
+                <md-input-container class="example-full-width">
+                    <input mdInput type="date" placeholder="Hired Date">
+                </md-input-container>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <md-input-container class="example-full-width">
+                    <input mdInput placeholder="Nationalty">
+                </md-input-container>
+            </td>
+            <td>
+                <md-select placeholder="Grade" class="example-full-width">
+                    <md-option *ngFor="let grade of grades" [value]="grade.value">
+                        {{ grade.viewValue }}
+                    </md-option>
+                </md-select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <md-select placeholder="Marital Status" class="example-full-width">
+                    <md-option *ngFor="let marital of maritals" [value]="marital.value">
+                        {{ marital.viewValue }}
+                    </md-option>
+                </md-select>
+
+            </td>
+            <td>
+                <md-select placeholder="Division" class="example-full-width">
+                    <md-option *ngFor="let division of divisions" [value]="division.value">
+                        {{ division.viewValue }}
+                    </md-option>
+                </md-select>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <md-input-container class="example-full-width">
+                    <input mdInput placeholder="Phone">
+                </md-input-container>
+            </td>
+            <td>
+                <md-input-container class="example-full-width">
+                    <input mdInput placeholder="E-mail">
+                </md-input-container>
+            </td>
+        </tr>
+
+        <button md-mini-fab class="user-img" width="50" height="50">
+        <md-icon svgIcon="ic_account"></md-icon></button>
+
+        <button md-mini-fab class="floating-button1">
+        <md-icon svgIcon="ic_done" >
+        </md-icon></button>
+
+        <button md-mini-fab class="floating-button2" type="reset">
+        <md-icon svgIcon="ic_clear">
+        </md-icon></button>
+
+        <button md-mini-fab class="floating-button3">
+        <md-icon svgIcon="ic_delete"  >
+        </md-icon></button>
+
+    </table>
+</form>

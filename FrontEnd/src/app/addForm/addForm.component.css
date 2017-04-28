@@ -1,0 +1,44 @@
+.example-form {
+    height: 100%;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 80%;
+}
+
+.user-img {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    right: 10px;
+    top: 10px;
+    background-color: darkgrey;
+}
+
+.floating-button1 {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    right: 30px;
+    bottom: 20px;
+    background-color: lightgreen;
+}
+
+.floating-button2 {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    right: 90px;
+    bottom: 20px;
+    background-color: crimson;
+}
+
+.floating-button3 {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    right: 150px;
+    bottom: 20px;
+    background-color: coral;
+}

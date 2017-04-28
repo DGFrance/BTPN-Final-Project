@@ -1,0 +1,40 @@
+<div class="top-div">
+    <!--call the method mdIcon form angular material its using npm install @angular/material-->
+    <button md-icon-button class="menu-button"><md-icon svgIcon="menu"></md-icon></button>
+    <img class="user-img" src="src/images/Mia.jpg" width="40" height="40">
+
+    <!--<grouping the user-tittle class with >-->
+    <span>
+    <div class="user-title">
+      <a>Donny Gumelar France</a> <br>
+      <a>SE - JP</a>
+    </div>
+  </span>
+
+    <span class="fill-remaining-space"></span>
+    <div class="top-div-right">
+        <button md-icon-button class="menu-button" mdTooltip="Setting"><md-icon svgIcon="settings"></md-icon></button>
+        <button md-icon-button class="menu-button" mdTooltip="Logout"><md-icon svgIcon="power_settings_new"></md-icon></button>
+    </div>
+</div>
+
+
+
+<!--List and Employee form Material-->
+<div class="main-div">
+    <div class="left-div">
+        <!--for make listemployee component can be used in main component-->
+        <list-employee></list-employee>
+    </div>
+
+
+
+    <!--Navigator and Form Component Material-->
+    <!--This for make the navigator-bar component show up on the app component-->
+    <div class="right-div">
+        <!--this how navigator bar can show up on main component-->
+        <navigator-bar></navigator-bar>
+    </div>
+</div>
+<!--for make a button function work on main component-->
+<btn-svg></btn-svg>

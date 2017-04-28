@@ -1,0 +1,22 @@
+.img-card {
+    float: left;
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+}
+
+.emp-name {
+    font-weight: bold;
+}
+
+.emp-info {
+    font-size: 14px;
+}
+
+.example-card {
+    width: 400px;
+}
+
+.example-card:hover {
+    background-color: gray;
+}
