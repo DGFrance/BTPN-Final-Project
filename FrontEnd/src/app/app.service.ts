@@ -42,4 +42,41 @@ export class AppService{
       });
         
     }
+
+      sortingEmployee(sort) {
+    return this.http.get('http://localhost:8080/employee/sortBy/' + sort).
+      map(response => {
+        return response.json();
+
+      });
+  }
+
+
+ filterByGender(gender) {
+    let genderParams = new URLSearchParams();
+    genderParams.append("gender", gender);
+    return this.http.get('http://localhost:8080/employee/filterGender', { search: genderParams })
+      .map(response => {
+        return response.json();
+      });
+  }
+
+  filterByLocation(location) {
+    let locationParams = new URLSearchParams();
+    locationParams.append("location", location);
+    return this.http.get('http://localhost:8080/employee/filterLocation', { search: locationParams })
+      .map(response => {
+        return response.json();
+      });
+  }
+
+filterByLocationAndGender(location,gender) {
+    let locationParams = new URLSearchParams();
+    locationParams.append("location", location);
+    locationParams.append("gender", gender);
+    return this.http.get('http://localhost:8080/employee/filterLocationAndGender', { search: locationParams })
+      .map(response => {
+        return response.json();
+      });
+}
 }

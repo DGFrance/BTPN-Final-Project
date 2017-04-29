@@ -1,3 +1,15 @@
 .save {
     background-color: aquamarine;
 }
+
+.reset {
+    background-color: lightcoral;
+}
+
+.filter {
+    background-color: seagreen;
+}
+
+.clear {
+    background-color: bisque;
+}

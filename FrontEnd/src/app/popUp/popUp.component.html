@@ -1,7 +1,7 @@
 <form>
-    <md-select placeholder="Location" [(ngModel)]="selectedValue" name="food">
-        <md-option *ngFor="let food of foods" [value]="food.value">
-            {{food.viewValue}}
+    <md-select placeholder="Location" [(ngModel)]="selectedLocationValue" name="location">
+        <md-option *ngFor="let location of locations" [value]="location.value">
+            {{location.viewValue}}
         </md-option>
     </md-select>
     <!--<p> Location: {{selectedValue}} </p>-->
@@ -12,7 +12,8 @@
         </md-option>
     </md-select>
     <!--<p> Gender: {{selectedGenderValue}} </p>-->
-
-    <button md-raised-button type="reset">Clear</button>
-    <button md-raised-button type="submit">Filter</button>
+    <p>
+        <button md-raised-button (click)="dialogRef.close({action:'cancel'})" class="reset">Cancel</button>
+        <button md-raised-button (click)="reset()" class="clear">clear</button>
+        <button md-raised-button (click)="doFilter()" class="filter">Filter</button>
 </form>

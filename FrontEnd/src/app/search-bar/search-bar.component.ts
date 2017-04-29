@@ -30,7 +30,7 @@ constructor(private service:AppService, public dialog: MdDialog, private Refresh
       console.log(this.contacts);
     });
   }
-  openDialog() {
+  filterEmployee() {
     this.dialog.open(PopUpComponent);
   }
 
@@ -51,7 +51,24 @@ getEmployees(name) {
     this.name = event.target.value;
     this.getEmployees(this.name);
   }
+
+sorting() {
+    if (this.sort == "asc") {
+      this.sort = "desc";
+    }
+    else {
+      this.sort = "asc";
+    }
+    this.service.sortingEmployee(this.sort)
+      .subscribe(result => {
+        this.contacts = result;
+        this.RefreshService.notifyOther({ option: 'refresh', value: result });
+      });
+      
 }
+
+}
+
 
  
 

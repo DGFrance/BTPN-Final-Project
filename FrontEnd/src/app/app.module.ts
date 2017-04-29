@@ -51,6 +51,7 @@ import {RefreshService} from './refreshapp.service';
     MdCheckboxModule,
     MdOptionModule,
     Md2Module,
+    
   
   ],
   providers: [AppService, RefreshService],

@@ -4,21 +4,18 @@
     </div>
     <md-input-container>
         <input mdInput placeholder="Search" type="text" (keyup)="onChange($event)">
-        
+
     </md-input-container>
     <div class="search-chip" mdTooltip="Recent Contact">
         <md-chip-list>
-            <md-chip>13</md-chip>
+            <md-chip>{{ contacts==null? 0:contacts.length}}</md-chip>
         </md-chip-list>
     </div>
     <div class="right-search-menu">
-        <button md-icon-button mdTooltip="Sorting" md-button [mdMenuTriggerFor]="menu"><md-icon svgIcon="sorting"></md-icon></button>
-        <md-menu #menu="mdMenu">
-            <button md-menu-item>Ascending</button>
-            <button md-menu-item>Descending</button>
-        </md-menu>
 
-        <button md-icon-button mdTooltip="Filtering" (click)="openDialog()">
+        <button md-icon-button (click)="sorting()" mdTooltip="Sorting"><md-icon svgIcon="sorting"></md-icon></button>
+
+        <button md-icon-button mdTooltip="Filtering" (click)="filterEmployee()">
             <md-icon svgIcon="filtering"></md-icon></button>
 
     </div>
