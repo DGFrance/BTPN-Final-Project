@@ -4,3 +4,8 @@
     <md-card-subtitle class="emp-info">{{contact.grade}} - {{contact.division}}, {{contact.subDivision}}
         <br>{{contact.location.city}}, {{contact.phone}}</md-card-subtitle>
 </md-card>
+
+<div class="notFound" *ngIf = "none" >
+    <div class="content">CONTACT NOT FOUND</div>
+    <md-spinner class="spinner"></md-spinner>
+</div>

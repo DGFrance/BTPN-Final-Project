@@ -18,8 +18,8 @@
 
 .floating-button1 {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     right: 30px;
     bottom: 20px;
     background-color: lightgreen;
@@ -27,18 +27,18 @@
 
 .floating-button2 {
     position: absolute;
-    width: 50px;
-    height: 50px;
-    right: 90px;
+    width: 70px;
+    height: 70px;
+    left: 10;
     bottom: 20px;
     background-color: crimson;
 }
 
 .floating-button3 {
     position: absolute;
-    width: 50px;
-    height: 50px;
-    right: 150px;
+    width: 60px;
+    height: 60px;
+    right: 100px;
     bottom: 20px;
     background-color: coral;
 }

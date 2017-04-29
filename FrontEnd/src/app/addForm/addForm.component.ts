@@ -51,23 +51,24 @@ export class AddFormComponent implements OnInit {
 	{value: 'AP', viewValue: 'AP'},
 	{value: 'AN', viewValue: 'AN'},
   ];
+  
 	ngOnInit() { 
      this.contactForm = this.formBuilder.group({
-      firstName: this.formBuilder.control(''),
-      lastName: this.formBuilder.control(''),
-      gender: this.formBuilder.control(''),
-      dateOfBirth: this.formBuilder.control(''),
-      nationality: this.formBuilder.control(''),
-      maritalStatus: this.formBuilder.control(''),
-      phone: this.formBuilder.control(''),
-      subDivision: this.formBuilder.control(''),
-      status: this.formBuilder.control(''),
-      suspendDate: this.formBuilder.control(''),
-      hiredDate: this.formBuilder.control(''),
-      grade: this.formBuilder.control(''),
-      division: this.formBuilder.control(''),
-      email: this.formBuilder.control(''),
-      location: this.formBuilder.control(''),
+      firstName: this.formBuilder.control('', Validators.required),
+      lastName: this.formBuilder.control('', Validators.required) ,
+      gender: this.formBuilder.control('', Validators.required),
+      dateOfBirth: this.formBuilder.control('', Validators.required),
+      nationality: this.formBuilder.control('', Validators.required),
+      maritalStatus: this.formBuilder.control('' , Validators.required),
+      phone: this.formBuilder.control('', Validators.required),
+      subDivision: this.formBuilder.control('', Validators.required),
+      status: this.formBuilder.control('', Validators.required),
+      suspendDate: this.formBuilder.control('', Validators.required),
+      hiredDate: this.formBuilder.control('', Validators.required),
+      grade: this.formBuilder.control('', Validators.required),
+      division: this.formBuilder.control('', Validators.required),
+      email: this.formBuilder.control('', [Validators.required , Validators.email]),
+      location: this.formBuilder.control('', Validators.required),
 });
      this.subscription = this.refreshService.notifyObservable$.subscribe((res) => {
       if (res.hasOwnProperty('option') && res.option === 'reset') {
@@ -107,6 +108,7 @@ export class AddFormComponent implements OnInit {
       }
     }
     )
-}
+} 
+  
   }
 

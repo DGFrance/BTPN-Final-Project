@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class EmployeeDataComponent implements OnInit {
   selectedEmployee;
   contacts;
+  none = false;
   
 	private subscription: Subscription;
   
@@ -21,12 +22,18 @@ export class EmployeeDataComponent implements OnInit {
 	ngOnInit() { 
 		 this.service.getAll().subscribe(data => {
       this.contacts = data;
-      console.log(this.contacts);
     });
 
 		this.subscription = this.RefreshService.notifyObservable$.subscribe((res) => {
       if (res.hasOwnProperty('option') && res.option === 'refresh') {
        this.contacts = res.value;
+
+       if (this.contacts == ""){
+         this.none = true;
+       }
+       else{
+         this.none= false;
+       }
       } 
     });
 	 }
@@ -35,7 +42,6 @@ export class EmployeeDataComponent implements OnInit {
      this.selectedEmployee = empId;
     this.service.getContactById(empId)
       .subscribe(data => {
-        console.log(this.contacts);
         this.RefreshService.notifyOther({ option: "showToForm", value: data });
 });
 }
