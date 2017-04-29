@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {AppService} from '../app.service';
 import {RefreshService} from 'app/refreshapp.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -10,8 +10,9 @@ import { Subscription } from 'rxjs/Subscription';
 })
 
 export class EmployeeDataComponent implements OnInit {
-
+  selectedEmployee;
   contacts;
+  
 	private subscription: Subscription;
   
  constructor(private service: AppService, private RefreshService:RefreshService,) {
@@ -31,10 +32,23 @@ export class EmployeeDataComponent implements OnInit {
 	 }
    
    onClick(empId) {
+     this.selectedEmployee = empId;
     this.service.getContactById(empId)
       .subscribe(data => {
         console.log(this.contacts);
         this.RefreshService.notifyOther({ option: "showToForm", value: data });
 });
+}
+    isSelected(employee)
+    {
+        let flag = false;
+        if (employee != null && this.selectedEmployee != null)
+        {
+            if (employee.empId === this.selectedEmployee)
+            {
+                flag = true;
+            }
+        }
+        return flag;
 }
 }

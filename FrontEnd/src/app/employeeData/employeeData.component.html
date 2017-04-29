@@ -1,10 +1,6 @@
-<md-card *ngFor='let contact of contacts' (click)="onClick(contact.empId)" class="example-card">
+<md-card *ngFor='let contact of contacts' [ngClass]="{'selected':isSelected(contact),'notSelected':!isSelected(contact)}" (click)="onClick(contact.empId)" class="example-card">
     <md-icon svgIcon="ic_account" class="img-card"></md-icon>
     <md-card-title class="emp-name">{{contact.firstName}} {{contact.lastName}}</md-card-title>
     <md-card-subtitle class="emp-info">{{contact.grade}} - {{contact.division}}, {{contact.subDivision}}
         <br>{{contact.location.city}}, {{contact.phone}}</md-card-subtitle>
 </md-card>
-
-<!--</div>
-<div class="overlay" [ngClass]="{'selected':isSelected(),'notSelected':!isSelected()}">
-</div>-->

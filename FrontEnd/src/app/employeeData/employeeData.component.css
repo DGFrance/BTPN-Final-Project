@@ -27,3 +27,7 @@
     position: absolute;
     opacity: 0;
 }
+
+.selected {
+    background-color: grey;
+}
