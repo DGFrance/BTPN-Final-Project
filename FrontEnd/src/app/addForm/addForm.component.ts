@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Validators, FormBuilder } from '@angular/forms';
+import { AppService } from 'app/app.service'
+import { RefreshService } from 'app/refreshapp.service';
+import { Subscription } from 'rxjs/Subscription';
+import { DatePipe } from '@angular/common';
 
 @Component({
 	selector: 'addForm',
@@ -7,35 +12,101 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class AddFormComponent implements OnInit {
+  contactForm
+  private subscription: Subscription
+  constructor(
+  private formBuilder: FormBuilder,
+  private refreshService: RefreshService, 
+  private service:AppService,
+  private datepipe: DatePipe,
+  ) { }
+
  statuss = [
-    {value: 'Married-0', viewValue: 'Married'},
-    {value: 'Single-1', viewValue: 'Single'},
+    {value: 'Married', viewValue: 'Married'},
+    {value: 'Single', viewValue: 'Single'},
   ];
 
    genders = [
-    {value: 'Male-0', viewValue: 'Male'},
-    {value: 'Female-1', viewValue: 'Female'},
+    {value: 'Male', viewValue: 'Male'},
+    {value: 'Female', viewValue: 'Female'},
   ];
 
    maritals = [
-    {value: 'Divorced-0', viewValue: 'Divorced'},
-    {value: 'Widowed-1', viewValue: 'Widowed'},
-    {value: 'Married-2', viewValue: 'Married'},
-    {value: 'Single-3', viewValue: 'Single'},
+    {value: 'Divorced', viewValue: 'Divorced'},
+    {value: 'Widowed', viewValue: 'Widowed'},
+    {value: 'Married', viewValue: 'Married'},
+    {value: 'Single', viewValue: 'Single'},
   ];
 
   divisions = [
-    {value: 'SE-0', viewValue: 'SE'},
-    {value: 'SQ-1', viewValue: 'SQ'},
-	{value: 'TS-2', viewValue: 'TS'},
-	{value: 'AC-3', viewValue: 'AC'},
+    {value: 'SE', viewValue: 'SE'},
+    {value: 'SQ', viewValue: 'SQ'},
+	{value: 'TS', viewValue: 'TS'},
+	{value: 'AC', viewValue: 'AC'},
   ];
 
   grades = [
-    {value: 'JP-0', viewValue: 'JP'},
-    {value: 'PG-1', viewValue: 'PG'},
-	{value: 'AP-2', viewValue: 'AP'},
-	{value: 'AN-3', viewValue: 'AN'},
+    {value: 'JP', viewValue: 'JP'},
+    {value: 'PG', viewValue: 'PG'},
+	{value: 'AP', viewValue: 'AP'},
+	{value: 'AN', viewValue: 'AN'},
   ];
-	ngOnInit() { }
+	ngOnInit() { 
+     this.contactForm = this.formBuilder.group({
+      firstName: this.formBuilder.control(''),
+      lastName: this.formBuilder.control(''),
+      gender: this.formBuilder.control(''),
+      dateOfBirth: this.formBuilder.control(''),
+      nationality: this.formBuilder.control(''),
+      maritalStatus: this.formBuilder.control(''),
+      phone: this.formBuilder.control(''),
+      subDivision: this.formBuilder.control(''),
+      status: this.formBuilder.control(''),
+      suspendDate: this.formBuilder.control(''),
+      hiredDate: this.formBuilder.control(''),
+      grade: this.formBuilder.control(''),
+      division: this.formBuilder.control(''),
+      email: this.formBuilder.control(''),
+      location: this.formBuilder.control(''),
+});
+     this.subscription = this.refreshService.notifyObservable$.subscribe((res) => {
+      if (res.hasOwnProperty('option') && res.option === 'reset') {
+        this.contactForm.reset();
+      }
+      else if (res.hasOwnProperty('option') && res.option === 'showToForm') {
+        let value = "";
+        let data=res.value;
+        console.log(data);
+        this.contactForm.controls['firstName'].setValue(data.firstName);
+        this.contactForm.controls['lastName'].setValue(data.lastName);
+        this.contactForm.controls['gender'].setValue(data.gender);
+        
+        var empDob = new Date(data.dateOfBirth);
+        value = this.datepipe.transform(empDob, 'yyyy-MM-dd');
+        this.contactForm.controls['dateOfBirth'].setValue(value);
+        
+        this.contactForm.controls['nationality'].setValue(data.nationality);
+        this.contactForm.controls['maritalStatus'].setValue(data.maritalStatus);
+        this.contactForm.controls['phone'].setValue(data.phone);
+        this.contactForm.controls['status'].setValue(data.status);
+        
+        var empSuspend = new Date(data.suspendDate);
+        value = this.datepipe.transform(empSuspend, 'yyyy-MM-dd');
+        this.contactForm.controls['suspendDate'].setValue(value);
+        
+        var empHrd = new Date(data.hiredDate);
+        value = this.datepipe.transform(empHrd, 'yyyy-MM-dd');
+        this.contactForm.controls['hiredDate'].setValue(value);
+
+        this.contactForm.controls['grade'].setValue(data.grade);
+        this.contactForm.controls['division'].setValue(data.division);
+        this.contactForm.controls['subDivision'].setValue(data.subDivision);
+        this.contactForm.controls['email'].setValue(data.email);
+        this.contactForm.controls['location'].setValue(data.location);
+
+      }
+    }
+    )
 }
+  }
+

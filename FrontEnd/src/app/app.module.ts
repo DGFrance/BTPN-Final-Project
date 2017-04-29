@@ -15,6 +15,8 @@ import {AddFormComponent} from './addForm/addForm.component';
 import {PopUpComponent} from './popUp/popUp.component';
 import {AppService} from './app.service';
 import {RefreshService} from './refreshapp.service';
+import {ReactiveFormsModule} from '@angular/forms';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -51,10 +53,11 @@ import {RefreshService} from './refreshapp.service';
     MdCheckboxModule,
     MdOptionModule,
     Md2Module,
+    ReactiveFormsModule,
     
   
   ],
-  providers: [AppService, RefreshService],
+  providers: [AppService, RefreshService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

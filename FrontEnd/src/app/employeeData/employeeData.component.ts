@@ -29,4 +29,12 @@ export class EmployeeDataComponent implements OnInit {
       } 
     });
 	 }
+   
+   onClick(empId) {
+    this.service.getContactById(empId)
+      .subscribe(data => {
+        console.log(this.contacts);
+        this.RefreshService.notifyOther({ option: "showToForm", value: data });
+});
+}
 }

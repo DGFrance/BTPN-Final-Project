@@ -1,25 +1,25 @@
-<form class="example-form">
+<form class="example-form" [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm.value)">
     <table class="example-full-width" cellspacing="2">
         <tr>
             <td>
                 <md-input-container class="example-full-width">
-                    <input mdInput placeholder="First name">
+                    <input mdInput formControlName="firstName" placeholder="First name">
                 </md-input-container>
             </td>
             <td>
                 <md-input-container class="example-full-width">
-                    <input mdInput placeholder="Sub Division">
+                    <input mdInput formControlName="subDivision" placeholder="Sub Division">
                 </md-input-container>
             </td>
         </tr>
         <tr>
             <td>
                 <md-input-container class="example-full-width">
-                    <input mdInput placeholder="Last name">
+                    <input mdInput formControlName="lastName" placeholder="Last name">
                 </md-input-container>
             </td>
             <td>
-                <md-select placeholder="Status" class="example-full-width">
+                <md-select formControlName="status" placeholder="Status" class="example-full-width">
                     <md-option *ngFor="let status of statuss" [value]="status.value">
                         {{ status.viewValue }}
                     </md-option>
@@ -28,7 +28,7 @@
         </tr>
         <tr>
             <td>
-                <md-select placeholder="Gender" class="example-full-width">
+                <md-select formControlName="gender" placeholder="Gender" class="example-full-width">
                     <md-option *ngFor="let gender of genders" [value]="gender.value">
                         {{ gender.viewValue }}
                     </md-option>
@@ -37,30 +37,30 @@
             </td>
             <td>
                 <md-input-container class="example-full-width">
-                    <input mdInput placeholder="Suspend Date">
+                    <input formControlName="suspendDate" mdInput placeholder="Suspend Date">
                 </md-input-container>
             </td>
         </tr>
         <tr>
             <td>
                 <md-input-container class="example-full-width">
-                    <input mdInput type="date" placeholder="Birth of Date">
+                    <input formControlName="dateOfBirth" mdInput type="date" placeholder="Birth of Date">
                 </md-input-container>
             </td>
             <td>
                 <md-input-container class="example-full-width">
-                    <input mdInput type="date" placeholder="Hired Date">
+                    <input formControlName="hiredDate" mdInput type="date" placeholder="Hired Date">
                 </md-input-container>
             </td>
         </tr>
         <tr>
             <td>
                 <md-input-container class="example-full-width">
-                    <input mdInput placeholder="Nationalty">
+                    <input formControlName="nationality" mdInput placeholder="Nationalty">
                 </md-input-container>
             </td>
             <td>
-                <md-select placeholder="Grade" class="example-full-width">
+                <md-select formControlName="grade" placeholder="Grade" class="example-full-width">
                     <md-option *ngFor="let grade of grades" [value]="grade.value">
                         {{ grade.viewValue }}
                     </md-option>
@@ -69,7 +69,7 @@
         </tr>
         <tr>
             <td>
-                <md-select placeholder="Marital Status" class="example-full-width">
+                <md-select formControlName="maritalStatus" placeholder="Marital Status" class="example-full-width">
                     <md-option *ngFor="let marital of maritals" [value]="marital.value">
                         {{ marital.viewValue }}
                     </md-option>
@@ -77,7 +77,7 @@
 
             </td>
             <td>
-                <md-select placeholder="Division" class="example-full-width">
+                <md-select formControlName="division" placeholder="Division" class="example-full-width">
                     <md-option *ngFor="let division of divisions" [value]="division.value">
                         {{ division.viewValue }}
                     </md-option>
@@ -88,12 +88,12 @@
         <tr>
             <td>
                 <md-input-container class="example-full-width">
-                    <input mdInput placeholder="Phone" type="number">
+                    <input formControlName="phone" mdInput placeholder="Phone" type="number">
                 </md-input-container>
             </td>
             <td>
                 <md-input-container class="example-full-width">
-                    <input mdInput placeholder="E-mail">
+                    <input formControlName="email" mdInput placeholder="E-mail">
                 </md-input-container>
             </td>
         </tr>

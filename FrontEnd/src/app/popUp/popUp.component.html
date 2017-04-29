@@ -1,4 +1,6 @@
 <form>
+    <p class="tittle">Filter Employee List by : </p>
+    <br>
     <md-select placeholder="Location" [(ngModel)]="selectedLocationValue" name="location">
         <md-option *ngFor="let location of locations" [value]="location.value">
             {{location.viewValue}}
