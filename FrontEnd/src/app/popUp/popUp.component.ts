@@ -38,7 +38,7 @@ doFilter(){
   
         if(this.selectedGenderValue===undefined && this.selectedLocationValue===undefined){
             this.dialogRef.close;
-             console.log("a");
+             
             
         }
         else if(this.selectedGenderValue!==undefined && this.selectedLocationValue===undefined){
@@ -46,21 +46,21 @@ doFilter(){
             this.service.filterByGender(this.selectedGenderValue).subscribe(data=>{
                 this.refreshService.notifyOther({ option: 'refresh', value: data });
             });
-            console.log(this.selectedGenderValue);
+            
         }
         else if(this.selectedGenderValue===undefined && this.selectedLocationValue!==undefined){
             this.dialogRef.close;
             this.service.filterByLocation(this.selectedLocationValue).subscribe(data=>{
                 this.refreshService.notifyOther({ option: 'refresh', value: data });
             });
-            console.log("c");
+           
         }
         else{
              this.dialogRef.close;
             this.service.filterByLocationAndGender(this.selectedLocationValue,this.selectedGenderValue).subscribe(data=>{
                 this.refreshService.notifyOther({ option: 'refresh', value: data });
             });
-            console.log("d");
+            
         }
         
 }

@@ -17,6 +17,8 @@ import {AppService} from './app.service';
 import {RefreshService} from './refreshapp.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import {DatePipe} from '@angular/common';
+import {DeleteComponent} from './delete/delete.component';
+import {SafeUrl} from './safeUrl.pipe';
 
 @NgModule({
   declarations: [
@@ -28,11 +30,15 @@ import {DatePipe} from '@angular/common';
     EmployeeDataComponent,
     AddFormComponent,
     PopUpComponent,
+    DeleteComponent,
+    SafeUrl,
+   
+    
   
     
   ],
   
-  entryComponents: [AddFormComponent , PopUpComponent, ],
+  entryComponents: [AddFormComponent , PopUpComponent,DeleteComponent ],
   
   imports: [
     BrowserModule,
@@ -59,7 +65,7 @@ import {DatePipe} from '@angular/common';
     
   
   ],
-  providers: [AppService, RefreshService, DatePipe],
+  providers: [AppService, RefreshService, DatePipe, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

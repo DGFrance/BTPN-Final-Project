@@ -1,11 +1,11 @@
 <md-card *ngFor='let contact of contacts' [ngClass]="{'selected':isSelected(contact),'notSelected':!isSelected(contact)}" (click)="onClick(contact.empId)" class="example-card">
-    <md-icon svgIcon="ic_account" class="img-card"></md-icon>
+    <img [src]="setImage(contact) | safeUrl" class="img-card"/>
     <md-card-title class="emp-name">{{contact.firstName}} {{contact.lastName}}</md-card-title>
     <md-card-subtitle class="emp-info">{{contact.grade}} - {{contact.division}}, {{contact.subDivision}}
         <br>{{contact.location.city}}, {{contact.phone}}</md-card-subtitle>
 </md-card>
 
 <div class="notFound" *ngIf = "none" >
-    <div class="content">CONTACT NOT FOUND</div>
+    <div class="content">We couldn't find what you were looking for</div>
     <md-spinner class="spinner"></md-spinner>
 </div>

@@ -96,21 +96,28 @@
                     <input formControlName="email" mdInput placeholder="E-mail">
                 </md-input-container>
             </td>
+            <br>
+             <td>
+                   <md-select formControlName="location" name="location" id="location" placeholder="Location" class="example-full-width" >
+                    <md-option *ngFor="let location of locations" [value]="location.id" >
+                        {{ location.city }}
+                    </md-option>
+                   </md-select>
+            </td>
         </tr>
+        <img class="user-img" [src]="photo | safeUrl" (click)="fileInput.click()" width="50" height="50" />       
+        <input name="photo" id="photo" class="file-chooser" #fileInput type="file" hidden="hidden" accept="image/*" (change)="chooseImage($event)">
 
-        <button md-mini-fab class="user-img" width="50" height="50">
-        <md-icon svgIcon="ic_account"></md-icon></button>
-
-        <button md-mini-fab class="floating-button1">
+        <button md-mini-fab class="floating-button1" type="submit">
         <md-icon svgIcon="ic_done" >
         </md-icon></button>
 
-        <button md-mini-fab class="floating-button2" type="reset">
+        <button md-mini-fab class="floating-button2" (click)="reset()" type="button">
         <md-icon svgIcon="add">
         </md-icon></button>
 
-        <button md-mini-fab class="floating-button3">
-        <md-icon svgIcon="ic_delete"  >
+        <button md-mini-fab class="floating-button3" (click)="openDeleteDialog()" type="button">
+        <md-icon svgIcon="ic_delete">
         </md-icon></button>
 
     </table>

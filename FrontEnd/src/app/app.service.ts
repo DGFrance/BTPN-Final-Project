@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Rx';
+import { Employee } from './employee.model';
+import { Location } from 'app/location.model';
 
 @Injectable()
 export class AppService{
@@ -10,10 +12,6 @@ export class AppService{
 
     }
     getAll(){
-        // let headers = new Headers();
-        // headers.append('Access-Control-Allow-Headers', 'Content-Type');
-        // headers.append('Access-Control-Allow-Methods', 'GET');
-        // headers.append('Access-Control-Allow-Origin', '*');
         return this.http.get('http://localhost:8080/employee/getAll')
         .map(response => {
             return response.json();
@@ -79,4 +77,31 @@ filterByLocationAndGender(location,gender) {
         return response.json();
       });
 }
+
+addEmployee(employee: Employee): Observable<Employee> {
+
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+      let url = 'http://localhost:8080/employee/add';
+      return this.http.post(url, JSON.stringify(employee), { headers: headers })
+        .map(response => response.json());
+
+  }
+
+  updateEmployee(id,contactData){
+   
+    return this.http.post('http://localhost:8080/employee/update/'+id ,contactData).
+    map(() => {
+      return "";
+    });
+  }
+
+   getLocations() {
+    return this.http.get('http://localhost:8080/locations/all').
+      map(response => {
+        return response.json();
+      });
+  }
+  
 }
