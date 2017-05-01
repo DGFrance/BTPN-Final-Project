@@ -15,7 +15,7 @@ public class LocationController {
 	@Autowired
 	private LocationRepository locationRepo;
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "http://localhost:3080")
 	@GetMapping("/locations/all")
 	@ResponseStatus(HttpStatus.OK)
 	public Iterable<Location> allLocations() {

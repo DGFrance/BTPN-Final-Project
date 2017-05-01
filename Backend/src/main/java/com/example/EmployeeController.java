@@ -35,21 +35,22 @@ public class EmployeeController {
 	@Autowired
 	private ObjectMapper mapper;
 	
-	@PostMapping("/add")
+	
 	@CrossOrigin(origins = "http://localhost:3080")
+	@PostMapping("/add")
 	@ResponseBody
-	public void addEmployee(@RequestBody String jsonObj)
-	{
-		mapper.setDateFormat(new SimpleDateFormat("yyyy/MM/dd"));
-		Employee e;
-		System.out.println(jsonObj);
-		try {
-			e = mapper.readValue(jsonObj, Employee.class);
-			this.repository.save(e);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+	public Employee saveEmployee(@RequestBody Employee emp){
+		return this.repository.save(emp);
 	}
+	
+	@CrossOrigin(origins = "http://localhost:3080")
+	@PostMapping("/update/{id}")
+	@ResponseBody
+	public Employee updateEmployee(@PathVariable Long id,@RequestBody Employee emp){
+		emp.setEmpId(id);
+		return this.repository.save(emp);
+	}
+	
 	@CrossOrigin(origins = "http://localhost:3080")
 	@GetMapping("/findByName")
 	@ResponseBody
@@ -58,16 +59,30 @@ public class EmployeeController {
 		return this.repository.findByLastNameContainingOrFirstNameContainingAllIgnoreCase(name, name);
 	}
 	
-	@GetMapping("/filter")
+	@GetMapping("/filterGender")
 	@CrossOrigin(origins = "http://localhost:3080")
 	@ResponseBody
-	public Iterable<Employee> filterEmployee(@RequestParam() String gender, Location location)
+	public Iterable<Employee> filterEmployeeByGender(@RequestParam() String gender)
 	{
-		if(!gender.isEmpty()&&location.getCity().isEmpty()){
 			return this.repository.findByGenderAllIgnoreCase(gender);
-		}
-		return this.repository.findByLocationAndGender(location, gender);
-
+	}
+	
+	@GetMapping("/filterLocation")
+	@CrossOrigin(origins = "http://localhost:3080")
+	@ResponseBody
+	public Iterable<Employee> filterEmployeeByLocation(@RequestParam() String location)
+	{
+			return this.repository.findByLocationCityAllIgnoreCase(location);
+	}
+	@GetMapping("/filterLocationAndGender")
+	@CrossOrigin(origins = "http://localhost:3080")
+	@ResponseBody
+	public Iterable<Employee> filterEmployeeByLocationAndGender(@RequestParam() String location, 
+			@RequestParam() String gender)
+	{
+		System.out.println(location);
+		System.out.println(gender);
+			return this.repository.findByLocationCityAndGenderAllIgnoreCase(location, gender);
 	}
 	
 	
@@ -81,29 +96,35 @@ public class EmployeeController {
 
 	}
 	
-	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH}, value="/{employeeId}")
-	public void update(@PathVariable Long employeeId, @RequestBody Employee emp) {
-		Employee entity = this.repository.findOne(employeeId);
-		if (entity == null) {
-			throw new EmployeeNotFoundException();
-		}
-		else{
-			entity = emp;
-			this.repository.save(entity);
-		}
-		
-	}
 	
 	@CrossOrigin(origins = "http://localhost:3080")
 	@DeleteMapping("/delete/{id}")
-	public void deleteEmployeeById(@PathVariable Long id) {
+	public Long deleteEmployeeById(@PathVariable Long id) {
 		this.repository.delete(id);
+		return id;
 	}
 	
 	@CrossOrigin(origins = "http://localhost:3080")
 	@GetMapping("/getById/{id}")
 	public Employee getEmployeeById(@PathVariable Long id) {
 		return this.repository.findOne(id);
+	}
+	
+	
+	@CrossOrigin(origins = "http://localhost:3080")
+	@GetMapping("/sortBy/{sort}")
+	public  Iterable<Employee> sortingEmployee(@PathVariable String sort) {
+		if(sort.equalsIgnoreCase("asc")){
+			Sort.Order sorting = new Sort.Order(Sort.Direction.ASC, "lastName").ignoreCase();
+			return this.repository.findAll(new Sort(sorting));
+		}
+		else if(sort.equalsIgnoreCase("desc")){
+			Sort.Order sorting = new Sort.Order(Sort.Direction.DESC, "lastName").ignoreCase();
+			return this.repository.findAll(new Sort(sorting));
+		}
+		
+		return this.repository.findAll();
+		
 	}
 
 }
