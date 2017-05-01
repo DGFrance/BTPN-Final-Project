@@ -6,7 +6,8 @@ import { Subscription } from 'rxjs/Subscription'
 
 @Component({
 	selector: 'delete',
-	templateUrl: 'delete.component.html'
+	templateUrl: 'delete.component.html',
+	styleUrls: ['delete.component.css']
 })
 
 export class DeleteComponent implements OnInit {

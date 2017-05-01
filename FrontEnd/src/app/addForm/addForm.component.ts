@@ -9,6 +9,9 @@ import { Location } from "app/location.model";
 import { MdDialog } from '@angular/material';
 import { DeleteComponent } from 'app/delete/delete.component';
 import { SafeUrl } from 'app/safeUrl.pipe';
+import {MdSnackBar} from '@angular/material';
+import {SubmitPopupComponent} from 'app/submitPopup/submitPopup.component';
+
 
 @Component({
   selector: 'addForm',
@@ -27,16 +30,23 @@ export class AddFormComponent implements OnInit {
   locations: Location[];
   employeeId = null;
   idContact;
-  private subscription: Subscription
+  deleteHidden;
+  isShow = false;
+  public snackBar: MdSnackBar;
+  private subscription: Subscription;
   constructor(
     private formBuilder: FormBuilder,
-    private refreshService: RefreshService,
+    public refreshService: RefreshService,
     private service: AppService,
     private datepipe: DatePipe,
     public dialog: MdDialog,
   ) { }
-  
 
+openSnackBar() {
+    this.snackBar.openFromComponent(SubmitPopupComponent, {
+      duration: 500,
+    });
+  }
 
   statuss = [
     { value: 'Married', viewValue: 'Married' },
@@ -79,28 +89,34 @@ export class AddFormComponent implements OnInit {
       });
 
     this.contactForm = this.formBuilder.group({
-      firstName: this.formBuilder.control('', Validators.required),
-      lastName: this.formBuilder.control('', Validators.required),
-      gender: this.formBuilder.control('', Validators.required),
-      dateOfBirth: this.formBuilder.control('', Validators.required),
-      nationality: this.formBuilder.control('', Validators.required),
-      maritalStatus: this.formBuilder.control('', Validators.required),
-      phone: this.formBuilder.control('', Validators.required),
-      subDivision: this.formBuilder.control('', Validators.required),
-      status: this.formBuilder.control('', Validators.required),
-      suspendDate: this.formBuilder.control('', Validators.required),
-      hiredDate: this.formBuilder.control('', Validators.required),
-      grade: this.formBuilder.control('', Validators.required),
-      division: this.formBuilder.control('', Validators.required),
-      email: this.formBuilder.control('', [Validators.required, Validators.email]),
-      location: this.formBuilder.control('', Validators.required),
+      firstName: this.formBuilder.control('', Validators.compose([Validators.required, Validators.pattern('[\\w\\-\\s\\/]+')])),
+      lastName: this.formBuilder.control('', Validators.compose([Validators.required, Validators.pattern('[\\w\\-\\s\\/]+')])),
+      gender: this.formBuilder.control('', Validators.compose([Validators.required])),
+      dateOfBirth: this.formBuilder.control('', Validators.compose([Validators.required])),
+      nationality: this.formBuilder.control('', Validators.compose([Validators.required])),
+      maritalStatus: this.formBuilder.control('', Validators.compose([Validators.required])),
+      phone: this.formBuilder.control('', Validators.compose([Validators.required, Validators.pattern(/^[0-9\(\)\-\+]{5,25}$/)])),
+      subDivision: this.formBuilder.control('', Validators.compose([Validators.required])),
+      status: this.formBuilder.control('', Validators.compose([Validators.required])),
+      suspendDate: this.formBuilder.control('', Validators.compose([Validators.required])),
+      hiredDate: this.formBuilder.control('', Validators.compose([Validators.required])),
+      grade: this.formBuilder.control('', Validators.compose([Validators.required])),
+      division: this.formBuilder.control('', Validators.compose([Validators.required])),
+      email: this.formBuilder.control('', Validators.compose([Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)])),
+      location: this.formBuilder.control('', Validators.compose([Validators.required])),
     });
     this.photo = "src/images/no-image.png";
     this.subscription = this.refreshService.notifyObservable$.subscribe((res) => {
       if (res.hasOwnProperty('option') && res.option === 'reset') {
         this.contactForm.reset();
+        this.isShow = true;
+      }
+
+      else if (res.hasOwnProperty('option') && res.option === 'showDelete') {
+        this.deleteHidden = res.value;
       }
       else if (res.hasOwnProperty('option') && res.option === 'showToForm') {
+        this.isShow = true;
         let value = "";
         let data = res.value;
         this.employeeId = data.empId;
@@ -130,31 +146,40 @@ export class AddFormComponent implements OnInit {
         this.contactForm.controls['subDivision'].setValue(data.subDivision);
         this.contactForm.controls['email'].setValue(data.email);
         this.contactForm.controls['location'].setValue(data.location.id);
-
-        if (data.photo != null) {
+     
+     if (data.photo != null) {
           this.photo = data.photo;
         }
         else {
-          this.photo = "src/images/no-image.png";
-
+          this.photo = "src/app/no-image.png";
         }
+
+      }
+      else if (res.hasOwnProperty('option') && res.option === 'resetForm') {
+        this.employeeId = null;
+        this.contactForm.reset();
+        this.photo = "src/app/no-image.png";
+        this.isShow = false;
+    
       }
     }
     )
   }
+
+
   reset() {
     this.contactForm.reset();
     this.photo = "src/images/no-image.png";
+    this.isShow = true;
+    
   }
   chooseImage(event) {
     console.log("a")
     this.image = event.target.files;
-    
-
     var reader = new FileReader();
     reader.onload = (event: any) => {
       this.photo = event.target.result;
-      
+
     }
 
     reader.readAsDataURL(event.target.files[0]);
@@ -168,7 +193,7 @@ export class AddFormComponent implements OnInit {
       city: ''
     };
     employee.location = location;
-    
+
     if (this.photo != "src/app/no-image.png" && this.photo != null) {
       employee.photo = this.photo;
     }
@@ -177,12 +202,14 @@ export class AddFormComponent implements OnInit {
       this.service.addEmployee(employee).subscribe(() => {
 
         this.refreshService.notifyOther({ option: 'add', value: "" });
+        this.isShow = false;
       });
     }
     else {
       this.service.updateEmployee(this.employeeId, employee).subscribe(() => {
         console.log(employee)
         this.refreshService.notifyOther({ option: 'add', value: "" });
+        this.isShow = false;
       });
     }
 
@@ -192,21 +219,22 @@ export class AddFormComponent implements OnInit {
     if (this.employee.location !== undefined) {
       this.employee.location = location;
     }
-    
+
   }
   openDeleteDialog() {
     let dialogRef = this.dialog.open(DeleteComponent, {
-      height: '200px',
-      width: '300px',
+
     });
 
     dialogRef.afterClosed().subscribe(data => {
-      
+
       if (data == 'delete') {
         this.delete(this.employeeId);
+        this.isShow = false;
       }
     })
   }
+
 
   delete(id) {
     this.service.delete(id)
@@ -218,9 +246,13 @@ export class AddFormComponent implements OnInit {
             this.refreshService.notifyOther({ option: 'delete', value: data });
           });
       });
+      this.deleteHidden = false;
+      this.reset();
   }
 
 }
+
+
 
 
 

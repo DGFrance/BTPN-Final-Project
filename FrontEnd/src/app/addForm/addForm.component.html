@@ -1,4 +1,4 @@
-<form class="example-form" [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm.value)">
+<form *ngIf="isShow" class="example-form" [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm.value)">
     <table class="example-full-width" cellspacing="2">
         <tr>
             <td>
@@ -112,13 +112,12 @@
         <md-icon svgIcon="ic_done" >
         </md-icon></button>
 
-        <button md-mini-fab class="floating-button2" (click)="reset()" type="button">
-        <md-icon svgIcon="add">
-        </md-icon></button>
-
-        <button md-mini-fab class="floating-button3" (click)="openDeleteDialog()" type="button">
+        <button md-mini-fab class="floating-button3" (click)="openDeleteDialog()" *ngIf="deleteHidden" type="button">
         <md-icon svgIcon="ic_delete">
         </md-icon></button>
 
     </table>
 </form>
+<button md-mini-fab class="floating-button2" (click)="reset()" type="button">
+        <md-icon svgIcon="add">
+        </md-icon></button>

@@ -13,6 +13,7 @@
     height: 300px;
     right: 20px;
     top: 10px;
+    border-radius: 100%;
     background-color: darkgrey;
     -webkit-filter: drop-shadow(2px 2px 2px #222);
     filter: drop-shadow(2px 2px 2px #222);

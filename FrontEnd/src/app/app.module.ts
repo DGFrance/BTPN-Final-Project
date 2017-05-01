@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdIconModule, MdInputModule, MdChipsModule, MdTabsModule, MdSelectModule, MdDialogModule, MdCardModule, MdTooltipModule, MdMenuModule, MdSidenavModule, MdCheckboxModule, MdOptionModule, MdProgressSpinnerModule, MdButtonToggleModule} from '@angular/material';
+import {MdButtonModule, MdIconModule, MdInputModule, MdChipsModule, MdTabsModule, MdSelectModule, MdDialogModule, MdCardModule, MdTooltipModule, MdMenuModule, MdSidenavModule, MdCheckboxModule, MdOptionModule, MdProgressSpinnerModule, MdButtonToggleModule, MdSnackBar} from '@angular/material';
 import { Md2Module }  from 'md2';
 import {ListEmployeeComponent} from './list-employee/list-employee.component';
 import {SearchBarComponent} from './search-bar/search-bar.component';
@@ -19,6 +19,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {DeleteComponent} from './delete/delete.component';
 import {SafeUrl} from './safeUrl.pipe';
+import {SubmitPopupComponent} from './submitPopup/submitPopup.component';
 
 @NgModule({
   declarations: [
@@ -32,9 +33,9 @@ import {SafeUrl} from './safeUrl.pipe';
     PopUpComponent,
     DeleteComponent,
     SafeUrl,
-   
+    SubmitPopupComponent,
     
-  
+   
     
   ],
   
@@ -65,7 +66,7 @@ import {SafeUrl} from './safeUrl.pipe';
     
   
   ],
-  providers: [AppService, RefreshService, DatePipe, ],
+  providers: [AppService, RefreshService, DatePipe, MdSnackBar ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

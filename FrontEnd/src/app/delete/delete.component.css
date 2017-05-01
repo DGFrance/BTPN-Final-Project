@@ -1,3 +1,11 @@
-.delete {
+.a{
+    text-align: center;
+}
 
+.delete{
+    background-color: brown;
+}
+
+.cancel{
+    background-color: aquamarine;
 }

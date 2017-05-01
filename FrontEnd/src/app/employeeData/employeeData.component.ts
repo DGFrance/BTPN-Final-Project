@@ -13,6 +13,7 @@ export class EmployeeDataComponent implements OnInit {
   selectedEmployee;
   contacts;
   none = false;
+  deleteHidden = false;
 
   private subscription: Subscription;
 
@@ -56,7 +57,13 @@ export class EmployeeDataComponent implements OnInit {
       .subscribe(data => {
         this.RefreshService.notifyOther({ option: "showToForm", value: data });
       });
+          
+          this.deleteHidden = true;
+          this.RefreshService.notifyOther({option: "showDelete", value:this.deleteHidden})
+
   }
+
+
   isSelected(employee) {
     let flag = false;
     if (employee != null && this.selectedEmployee != null) {
