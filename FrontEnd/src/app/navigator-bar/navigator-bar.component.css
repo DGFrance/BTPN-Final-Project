@@ -7,7 +7,7 @@
     left: 0px;
     right: auto;
     padding: 1px 0px 0px 2px;
-    background-color: indianred;
+    background-color: lightgreen;
 }
 
 .nav-bar-icon {
@@ -17,16 +17,7 @@
     padding: 5px 0px 0px 0px;
 }
 
-.bottom-div {
-    position: absolute;
-    height: 40px;
-    width: 100%;
-    background-color: indianred;
-    bottom: 0px;
-    left: 0px;
-    right: auto;
-    color: white;
-}
+
 
 .example-container {
     float: right;
@@ -43,4 +34,10 @@
 
 .addform {
     height: 520px;
+}
+
+.header{
+    position: absolute;
+    top: 50%;
+    left: 40%;
 }

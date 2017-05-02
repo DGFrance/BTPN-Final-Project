@@ -19,7 +19,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {DeleteComponent} from './delete/delete.component';
 import {SafeUrl} from './safeUrl.pipe';
-import {SubmitPopupComponent} from './submitPopup/submitPopup.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import {SubmitPopupComponent} from './submitPopup/submitPopup.component';
     PopUpComponent,
     DeleteComponent,
     SafeUrl,
-    SubmitPopupComponent,
+    
     
    
     

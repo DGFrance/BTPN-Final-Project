@@ -10,7 +10,7 @@ import { MdDialog } from '@angular/material';
 import { DeleteComponent } from 'app/delete/delete.component';
 import { SafeUrl } from 'app/safeUrl.pipe';
 import {MdSnackBar} from '@angular/material';
-import {SubmitPopupComponent} from 'app/submitPopup/submitPopup.component';
+
 
 
 @Component({
@@ -42,15 +42,9 @@ export class AddFormComponent implements OnInit {
     public dialog: MdDialog,
   ) { }
 
-openSnackBar() {
-    this.snackBar.openFromComponent(SubmitPopupComponent, {
-      duration: 500,
-    });
-  }
-
   statuss = [
-    { value: 'Married', viewValue: 'Married' },
-    { value: 'Single', viewValue: 'Single' },
+    { value: 'Full Time', viewValue: 'Full Time' },
+    { value: 'Part Time', viewValue: 'Part Time' },
   ];
 
   genders = [
