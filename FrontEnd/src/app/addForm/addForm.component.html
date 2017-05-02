@@ -37,7 +37,7 @@
             </td>
             <td>
                 <md-input-container class="example-full-width">
-                    <input formControlName="suspendDate" mdInput placeholder="Suspend Date">
+                    <input formControlName="suspendDate" mdInput type="date" placeholder="Suspend Date">
                 </md-input-container>
             </td>
         </tr>
@@ -88,7 +88,7 @@
         <tr>
             <td>
                 <md-input-container class="example-full-width">
-                    <input formControlName="phone" mdInput placeholder="Phone" type="number"  >
+                    <input formControlName="phone" mdInput placeholder="Phone">
                 </md-input-container>
             </td>
             <td>
@@ -97,15 +97,15 @@
                 </md-input-container>
             </td>
             <br>
-             <td>
-                   <md-select formControlName="location" name="location" id="location" placeholder="Location" class="example-full-width" >
-                    <md-option *ngFor="let location of locations" [value]="location.id" >
+            <td>
+                <md-select formControlName="location" name="location" id="location" placeholder="Location" class="example-full-width">
+                    <md-option *ngFor="let location of locations" [value]="location.id">
                         {{ location.city }}
                     </md-option>
-                   </md-select>
+                </md-select>
             </td>
         </tr>
-        <img class="user-img" [src]="photo | safeUrl" (click)="fileInput.click()" width="50" height="50" />       
+        <img class="user-img" [src]="photo | safeUrl" (click)="fileInput.click()" width="50" height="50" />
         <input name="photo" id="photo" class="file-chooser" #fileInput type="file" hidden="hidden" accept="image/*" (change)="chooseImage($event)">
 
         <button md-mini-fab class="floating-button1" type="submit">

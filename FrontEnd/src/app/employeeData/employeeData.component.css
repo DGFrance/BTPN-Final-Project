@@ -11,7 +11,6 @@
 
 .emp-info {
     font-size: 14px;
-
 }
 
 .example-card {
@@ -20,6 +19,9 @@
 
 .example-card:hover {
     background-color: gray;
+    box-shadow: 3px 3px #53a7ea, 3px 3px #53a7ea, 3px 3px #53a7ea;
+    -webkit-transform: translateX(-3px);
+    transform: translateX(-3px);
 }
 
 .overlay {
@@ -39,7 +41,7 @@
     height: 538px;
 }
 
-.spinner{
+.spinner {
     position: absolute;
     top: 200px;
     left: 125px;
@@ -53,5 +55,11 @@
     size: 50px;
     font-weight: bold;
     color: blue;
-   
+}
+
+.button {
+    size: 20px;
+    position: absolute;
+    right: 50px;
+    top: 45px;
 }

@@ -1,11 +1,15 @@
 <md-card *ngFor='let contact of contacts' [ngClass]="{'selected':isSelected(contact),'notSelected':!isSelected(contact)}" (click)="onClick(contact.empId)" class="example-card">
-    <img [src]="setImage(contact) | safeUrl" class="img-card"/>
+    <img [src]="setImage(contact) | safeUrl" class="img-card" />
     <md-card-title class="emp-name">{{contact.firstName}} {{contact.lastName}}</md-card-title>
     <md-card-subtitle class="emp-info">{{contact.grade}} - {{contact.division}}, {{contact.subDivision}}
-        <br>{{contact.location.city}}, {{contact.phone}}</md-card-subtitle>
+        <br>{{contact.location.city}}, {{contact.phone}}
+        <button md-icon-button class="button">
+            <md-icon svgIcon="radio_button_checked"></md-icon> 
+            <md-icon svgIcon="chevron_right">
+                </md-icon></button></md-card-subtitle>
 </md-card>
 
-<div class="notFound" *ngIf = "none" >
+<div class="notFound" *ngIf="none">
     <div class="content">We couldn't find what you were looking for</div>
     <md-spinner class="spinner"></md-spinner>
 </div>

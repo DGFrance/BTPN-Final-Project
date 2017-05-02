@@ -13,6 +13,9 @@ export class PopUpComponent implements OnInit {
  selectedValue: string;
   selectedGenderValue;
   selectedLocationValue; 
+  show;
+  contacts;
+  data;
 
 constructor(public dialogRef: MdDialogRef<PopUpComponent>,private service: AppService,  private refreshService:RefreshService , ) { }
 
@@ -45,6 +48,11 @@ doFilter(){
             this.dialogRef.close;
             this.service.filterByGender(this.selectedGenderValue).subscribe(data=>{
                 this.refreshService.notifyOther({ option: 'refresh', value: data });
+                 if (this.data.length == 0) {
+                this.show = true;
+              } else {
+                this.show = false;
+              }
             });
             
         }
@@ -52,6 +60,11 @@ doFilter(){
             this.dialogRef.close;
             this.service.filterByLocation(this.selectedLocationValue).subscribe(data=>{
                 this.refreshService.notifyOther({ option: 'refresh', value: data });
+                 if (this.contacts.length == 0) {
+                this.show = true;
+              } else {
+                this.show = false;
+              }
             });
            
         }
@@ -59,6 +72,11 @@ doFilter(){
              this.dialogRef.close;
             this.service.filterByLocationAndGender(this.selectedLocationValue,this.selectedGenderValue).subscribe(data=>{
                 this.refreshService.notifyOther({ option: 'refresh', value: data });
+                 if (this.contacts.length == 0) {
+                this.show = true;
+              } else {
+                this.show = false;
+              }
             });
             
         }

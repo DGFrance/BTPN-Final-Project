@@ -6,14 +6,12 @@
             {{location.viewValue}}
         </md-option>
     </md-select>
-    <!--<p> Location: {{selectedValue}} </p>-->
 
     <md-select placeholder="Gender" [(ngModel)]="selectedGenderValue" name="gender">
         <md-option *ngFor="let gender of genders" [value]="gender.value">
             {{gender.viewValue}}
         </md-option>
     </md-select>
-    <!--<p> Gender: {{selectedGenderValue}} </p>-->
     <p>
         <button md-raised-button (click)="dialogRef.close({action:'cancel'})" class="reset">Cancel</button>
         <button md-raised-button (click)="reset()" class="clear">clear</button>

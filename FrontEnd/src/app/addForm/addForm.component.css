@@ -26,6 +26,7 @@
     right: 30px;
     bottom: 20px;
     background-color: lightgreen;
+    opacity: 0.5;
 }
 
 .floating-button2 {
@@ -35,6 +36,19 @@
     left: 10;
     bottom: 20px;
     background-color: crimson;
+    opacity: 0.5;
+}
+
+.floating-button1:hover {
+    opacity: 1;
+}
+
+.floating-button2:hover {
+    opacity: 1;
+}
+
+.floating-button3:hover {
+    opacity: 1;
 }
 
 .floating-button3 {
@@ -44,10 +58,5 @@
     right: 100px;
     bottom: 20px;
     background-color: coral;
+    opacity: 0.5;
 }
-
-
-
-
-
-
