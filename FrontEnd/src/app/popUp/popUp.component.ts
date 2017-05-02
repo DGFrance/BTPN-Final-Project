@@ -47,7 +47,9 @@ doFilter(){
         else if(this.selectedGenderValue!==undefined && this.selectedLocationValue===undefined){
             this.dialogRef.close;
             this.service.filterByGender(this.selectedGenderValue).subscribe(data=>{
+              console.log(data)
                 this.refreshService.notifyOther({ option: 'refresh', value: data });
+ 
                  if (this.data.length == 0) {
                 this.show = true;
               } else {
@@ -60,7 +62,7 @@ doFilter(){
             this.dialogRef.close;
             this.service.filterByLocation(this.selectedLocationValue).subscribe(data=>{
                 this.refreshService.notifyOther({ option: 'refresh', value: data });
-                 if (this.contacts.length == 0) {
+                 if (this.data.length == 0) {
                 this.show = true;
               } else {
                 this.show = false;
@@ -72,7 +74,7 @@ doFilter(){
              this.dialogRef.close;
             this.service.filterByLocationAndGender(this.selectedLocationValue,this.selectedGenderValue).subscribe(data=>{
                 this.refreshService.notifyOther({ option: 'refresh', value: data });
-                 if (this.contacts.length == 0) {
+                 if (this.data.length == 0) {
                 this.show = true;
               } else {
                 this.show = false;

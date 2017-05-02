@@ -35,6 +35,9 @@ export class SearchBarComponent {
       if (res.hasOwnProperty('option') && res.option === 'newVal') {
         this.contacts = res.value;
       }
+      if (res.hasOwnProperty('option') && res.option === 'refresh') {
+        this.contacts = res.value;
+      }
     });
   }
   filterEmployee() {

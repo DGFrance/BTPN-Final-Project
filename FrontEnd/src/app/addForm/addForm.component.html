@@ -1,3 +1,5 @@
+<h3 class="header" *ngIf="!isShow">Welcome to MitraContact</h3>
+
 <form *ngIf="isShow" class="example-form" [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm.value)">
     <table class="example-full-width" cellspacing="2">
         <tr>
